@@ -1,0 +1,265 @@
+
+public class Repository 
+{
+	
+	public WebDriver driver;
+	public WebDriverWait wait;
+	
+	/*
+	 * Methodname:--> launch Any browser [Firefox,chrome,IE]
+	 * Author
+	 * CreatedOn
+	 * ReviewedBy
+	 * parametersused
+	 * lastupdateddate:--->
+	 */
+	public void browserlaunch(String browsername)
+	{	
+		switch (browsername) 
+		{
+		case "firefox":
+			driver=new FirefoxDriver();
+			break;
+			
+		case "chrome":
+			driver=new ChromeDriver();
+			break;
+			
+		case "ie":
+			driver=new InternetExplorerDriver();
+			break;
+
+		default:System.out.println("Browser name mismatch");
+			break;
+		}
+		
+	}
+	
+	
+	
+	/*
+	 * MethodName:--> Open Diff Applications[With https:// ]
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void LoadApp(String url)
+	{
+		driver.get(url);
+		driver.manage().window().maximize();
+	}
+	
+	
+
+	/*
+	 * MethodName:--> Set Timeouts
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void setTimeout(int Sec)
+	{
+		//Implicit timeout..
+		driver.manage().timeouts().implicitlyWait(Sec, TimeUnit.SECONDS);
+		
+		//Explicit timeout
+		wait=new WebDriverWait(driver, Sec);
+	}
+	
+	
+
+	/*
+	 * MethodName:--> Enter text into Editbox..[using locator xpath]
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void Enter_textTo_Eb(String Element_Xpath, String input)
+	{
+		driver.findElement(By.xpath(Element_Xpath)).clear();
+		driver.findElement(By.xpath(Element_Xpath)).sendKeys(input);
+	}
+	
+	/*
+	 * MethodName:--> Enter text into Editbox..using locator class
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void Enter_textTo_Eb(By locator, String Input)
+	{
+		WebElement Editbox=driver.findElement(locator);
+		
+		if(Editbox.isDisplayed() && Editbox.isEnabled())
+		{
+			Editbox.clear();
+			Editbox.sendKeys(Input);
+		}
+		else
+			System.out.println("Element Not visible or enabled");
+	}
+	
+	
+	
+	/*
+	 * MethodName:--> Select Dropdown using optioname
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void Select_dropdown(By locator, String Option_name)
+	{
+		WebElement Dropdown=driver.findElement(locator);
+		if(Dropdown.isDisplayed() && Dropdown.isEnabled())
+		{
+			new Select(Dropdown).selectByVisibleText(Option_name);
+		}
+		else
+			System.out.println("Dropdown element not visible or enabeld");
+	}
+	
+
+	
+	/*
+	 * MethodName:--> Click Element [Radiobutton, checkbox,link,button,list,image...etc]
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void Click_element(By locator)
+	{
+		driver.findElement(locator).click();
+	}
+	
+	
+	/*
+	 * MethodName:--> waitandclick [Radiobutton, checkbox,link,button,list,image...etc]
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void Wait_and_click(By locator)
+	{
+		wait.until(ExpectedConditions.elementToBeClickable(locator));
+	}
+	
+	
+	/*
+	 * MethodName:-->Mouse hover on element
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void MouseHover(By locator)
+	{
+		WebElement Element=driver.findElement(locator);
+		new Actions(driver).moveToElement(Element).perform();
+	}
+	
+	/*
+	 * MethodName:-->Wait for Elemnet visibility
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void wait_for_elementTovisible(By locator)
+	{
+		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+	
+	
+	/*
+	 * MethodName:-->ContextClick
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void RightClick_OnElement(By locator)
+	{
+		WebElement Element=driver.findElement(locator);
+		new Actions(driver).contextClick(Element).perform();
+	}
+	
+	
+	/*
+	 * MethodName:-->switch to window using window title
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void switchto_window(String win_title)
+	{
+		//Get all window dyamic id's
+		Set<String> allwindows=driver.getWindowHandles();
+				
+		//Apply foreach loop ot iterate 
+		for (String Eachwindow : allwindows) 
+		{
+			driver.switchTo().window(Eachwindow);
+			//Get Current window at runtime
+			String pagetitle=driver.getTitle();
+					
+			if(pagetitle.contains(win_title))
+			{
+				break;
+			}
+				
+		}
+	}
+	
+	
+	/*
+	 * MethodName:-->Capture Screenshot
+	 * Author:-->
+	 * CreatedON:-->
+	 * ReviewedBy:-->
+	 * Parametersused:-->
+	 * Lasupdated Date:--->
+	 */
+	public void Capturescreen(String Imagename) 
+	{
+		//Java time stamp..
+		DateFormat df=new SimpleDateFormat("yyyy/MMM/dd/ hh-mm-ss");
+		//Get System Data
+		Date d=new Date();   //import java.util;
+		//Using simple formatter change system data..
+		String time=df.format(d);
+		
+		System.out.println(d.toString());
+		
+		
+		try {
+			
+			File src1=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(src1, new File("screens\\"+time+Imagename+".png"));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+}

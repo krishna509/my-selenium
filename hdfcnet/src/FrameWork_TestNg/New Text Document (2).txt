@@ -1,0 +1,25 @@
+purpose --- design test cases in a systematic way
+testng other FORM is 
+TDD-TEST DRIVEN DEVELOPMENT
+>html REPORTS
+>DIFF ANNOTATIONS
+>PRIORITIES/SEQUENCES
+>DEPENDENCY
+>GROUPING
+>DATA PROVIDER
+
+
+data provider: u want to excute multiple time
+cases mutilple time login featutres
+10 test cases that date provider is best one
+HOW TO PASS PARAMETER  USING @ PARAMETER
+EXAMPLE
+PARAMETER TESTCLASS
+{
+  @TEST
+@parameter({"url},{emailid})
+PUBLIC VOID YAHOOLOGIN TEXTMETHOD(string url,string emailid)
+{
+driver=new chromedriver()
+driver.get url
+driver.findelement(login).click

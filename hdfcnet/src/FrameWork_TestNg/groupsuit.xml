@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name ="group">
+<test name = "Depeneces">
+<classes>
+<class name= "FrameWork_TestNg.Depenecesfacebook">
+<include name="login">
+</include>
+</class>
+</classes>
+
+
+</test>
+<test name ="FrameWork">
+<classes>
+<class name ="FrameWork_TestNg.NewTest">
+<include name="tc003_Verify_MessengerPage">
+</include>
+</class>
+</classes>
+</test>
+
+
+</suite>

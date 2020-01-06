@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name ="frame">
+
+<test name="NewTest">
+<classes>
+  <class name="FrameWork_TestNg.NewTest">
+ 
+  
+  
+  </class>
+
+
+
+
+</classes>
+
+
+
+</test>
+</suite>

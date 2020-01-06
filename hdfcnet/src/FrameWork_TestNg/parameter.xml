@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="default">
+<parameter name= "appurl" value="https://www.facebook.com"/>
+<parameter name= "appuid" value="krishna"/>
+<parameter name= "apppwd" value="helo123"/>
+<test name ="test">
+<classes>
+<class name="Framework_TestNg.Framework_TestNg.get_parameters">
+</class>
+</classes>
+</test>
+ </suite>
